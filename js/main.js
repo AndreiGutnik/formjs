@@ -1,3 +1,5 @@
+var loginStat;
+
 $(document).ready(function(){
     $("#login").blur(runajax);
 }); //конец ready
@@ -7,19 +9,35 @@ function runajax(){
     var inp = $("#login").val();
     $.ajax({
         type: "POST",
-        data: "ter="+inp,
+        data: "login="+inp,
         url: "\ajax.php",
-        dataType: "json",
+        //dataType: "json",
         error: function(){
             alert("Запрос завершился ошибкой!");
         },
         beforeSend: function(){
-            $('#text').html('Проверка ...');
+            $('#login').next().html('Проверка ...');
         },
         success: function(data){
-            //alert("vvv");
-            //$("#inp2").val(data.id);
-            $("#text").text(data.password);
+            if(data == "no"){
+                $("#login").next().hide().text("Логин занят").css("color", "red").fadeIn(1000);
+                //скрыть следующий блок после селектора, изменить текст, а потом плавно вывести
+                $("#login").removeClass().addClass("inputRed");
+                //очистка имеющихся классов и присвоение другого
+                loginStat = 0;
+                buttonOnAndOff();
+            } else {
+                $("#login").removeClass().addClass("inputGreen")
+                $("#login").next().text("");
+                loginStat = 1;
+                buttonOnAndOff();
+            }
         }
     });
+}
+
+function buttonOnAndOff() {
+    if(loginStat == 1) {
+        $("#submit").removeAttr("disabled");
+    }
 }

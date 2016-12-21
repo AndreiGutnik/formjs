@@ -5,7 +5,7 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	<meta name="description" content="Описание" />
     <meta name="keywords" content="Ключевые слова" />
-    <!--<link rel="stylesheet" type="text/css" href="css/style.css" />-->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
 
@@ -14,16 +14,16 @@
     <h2>Авторизация</h2>
     <form id="authform" action="auth.php" method="POST">
         <p>
-            <label>Ваш логин:<br />
-            <input id="login" name="login" type="text" size="15" maxlength="15"></label>
-            <span id="text"></span>
+            <label><font color="red">*</font>Ваш логин:<br /></label>
+            <input id="login" name="login" type="text" size="15" maxlength="15">
+            <span></span>
         </p>
         <p>
             <label>Ваш пароль:<br />
             <input name="password" type="password" size="15" maxlength="15"></label>
         </p>
         <p>
-            <input type="submit" name="submit" value="Войти">
+            <input id="submit" type="submit" name="submit" value="Войти" disabled>
             <br />
             <a href="reg.php">Зарегистрироваться</a>
         </p>
